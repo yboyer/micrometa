@@ -1,22 +1,20 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}
-  Liste des images
-{% endblock %}
+{% block title %}Liste des images{% endblock %}
 
 {% block main %}
   <div id="list">
-    <h1>Images</h1>
+    <h1>Liste des images</h1>
 
     <div id="images">
       {% for image in images %}
         <div class="image">
           <a href="details?image={{ image.filename }}">
             <figure>
-              <img src="{{ image.path }}" alt="{{ image.filename }}"/>
+              <div><img src="{{ image.path }}" alt="{{ image.filename }}"/></div>
               <figcaption>
                 <div>{{ image.name }}</div>
-                <div>{{ image.creator }}</div>
+                <div class="author">{{ image.author }}</div>
               </figcaption>
             </figure>
           </a>
