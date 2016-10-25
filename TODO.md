@@ -8,7 +8,7 @@
   - [x] Chaque image envoie vers une page de détail
   - [ ] Microdata
 - Détail: `/detail/{filename}`
-  - [ ] Affichage de l'image
+  - [x] Affichage de l'image
   - [ ] Affichage des métadonnées
     - [ ] Microdata
     - [ ] Open Graph

@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Image{% endblock %}
+
+{% block main %}
+  <div id="detail">
+    <h1>Detail</h1>
+    <div>
+      <div id="image">
+        <img src="{{ root }}{{ image.path }}" alt="">
+      </div>
+    </div>
+  </div>
+{% endblock %}
