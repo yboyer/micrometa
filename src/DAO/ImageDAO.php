@@ -19,13 +19,14 @@ class ImageDAO
         $images = array_values(array_diff(scandir($this->imagesPath), array('..', '.')));
 
         for ($i = count($images) - 1; $i >= 0; --$i) {
+            $data = (new Exiftool($this->imagesPath.$images[$i]))->getData();
+
             $images[$i] = [
                 'filename' => $images[$i],
                 'path' => 'images/'.$images[$i],
-                'data' => (new Exiftool($this->imagesPath.$images[$i]))->getData(),
+                'name' => $data['XMP-dc']['Title'],
+                'author' => $data['XMP-dc']['Creator'],
             ];
-            $images[$i]['name'] = $images[$i]['data']['XMP-dc']['Title'];
-            $images[$i]['author'] = $images[$i]['data']['XMP-dc']['Creator'];
             $images[$i] = new Image($images[$i]);
         }
 
