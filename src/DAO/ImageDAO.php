@@ -25,7 +25,7 @@ class ImageDAO
                 'data' => (new Exiftool($this->imagesPath.$images[$i]))->getData(),
             ];
             $images[$i]['name'] = $images[$i]['data']['XMP-dc']['Title'];
-            $images[$i]['creator'] = $images[$i]['data']['XMP-dc']['Creator'];
+            $images[$i]['author'] = $images[$i]['data']['XMP-dc']['Creator'];
             $images[$i] = new Image($images[$i]);
         }
 

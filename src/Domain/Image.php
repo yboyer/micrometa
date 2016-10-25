@@ -7,7 +7,7 @@ class Image extends Domain
     private $filename;
     private $path;
     private $name;
-    private $creator;
+    private $author;
 
     /**
      * Get the value of Filename
@@ -82,25 +82,25 @@ class Image extends Domain
     }
 
     /**
-     * Get the value of Creator
+     * Get the value of Author
      *
      * @return mixed
      */
-    public function getCreator()
+    public function getAuthor()
     {
-        return $this->creator;
+        return $this->author;
     }
 
     /**
-     * Set the value of Creator
+     * Set the value of Author
      *
-     * @param mixed creator
+     * @param mixed author
      *
      * @return self
      */
-    public function setCreator($creator)
+    public function setAuthor($author)
     {
-        $this->creator = $creator;
+        $this->author = $author;
 
         return $this;
     }
