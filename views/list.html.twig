@@ -9,7 +9,7 @@
     <div id="images">
       {% for image in images %}
         <div class="image">
-          <a href="details?image={{ image.filename }}">
+          <a href="detail/{{ image.filename }}">
             <figure>
               <div><img src="{{ image.path }}" alt="{{ image.filename }}"/></div>
               <figcaption>
