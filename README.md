@@ -4,6 +4,7 @@
 ### Technologies
   - `Silex`
   - `Twig`
+  - `sass`
   - `ExifTool`
 
 ## Prerequisites:
