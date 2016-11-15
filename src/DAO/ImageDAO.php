@@ -31,4 +31,19 @@ class ImageDAO
 
         return $images;
     }
+
+    public function findOne($filename)
+    {
+        $data = (new Exiftool($this->imagesPath.$filename))->getData();
+
+        if ($data == null) {
+            return;
+        }
+
+        return new Image([
+            'filename' => $filename,
+            'path' => 'images/'.$filename,
+            'data' => $data,
+        ]);
+    }
 }
