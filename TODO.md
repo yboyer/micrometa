@@ -6,7 +6,7 @@
 - Accueil: `/`
   - [x] Affichage des images du dossier images
   - [x] Chaque image envoie vers une page de détail
-  - [ ] Microdata
+  - [x] Microdata
 - Détail: `/detail/{filename}`
   - [x] Affichage de l'image
   - [ ] Affichage des métadonnées
@@ -24,9 +24,9 @@
 - ***++***
   - Accueil: `/`
     - [x] Affiche les noms et auteurs
-      - [ ] Microdata
+      - [x] Microdata
   - Détail: `/detail/{filename}`
-    - Recherche d'image correspondante par mot-clé, titre, géolocalisation, ...
+    - [ ] Recherche d'image correspondante par mot-clé, titre, géolocalisation, ...
   - Carte: `/map`
     - [ ] Affichage des images sur une cartes
   - Global

@@ -8,6 +8,8 @@ class Image extends Domain
     private $path;
     private $name;
     private $author;
+    private $description;
+    private $location;
 
     /**
      * Get the value of Filename
@@ -105,4 +107,51 @@ class Image extends Domain
         return $this;
     }
 
+    /**
+     * Get the value of Description
+     *
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set the value of Description
+     *
+     * @param mixed description
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Location
+     *
+     * @return mixed
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set the value of Location
+     *
+     * @param mixed location
+     *
+     * @return self
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
 }

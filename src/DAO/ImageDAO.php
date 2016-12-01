@@ -26,7 +26,13 @@ class ImageDAO
                 'path' => 'images/'.$images[$i],
                 'name' => $data['XMP-dc']['Title'],
                 'author' => $data['XMP-dc']['Creator'],
+                'description' => $data['XMP-dc']['Description'],
             ];
+            if (isset($data['XMP-iptcCore'])) {
+                if (isset($data['XMP-iptcCore']['Location'])) {
+                    $images[$i]['location'] = $data['XMP-iptcCore']['Location'];
+                }
+            }
             $images[$i] = new Image($images[$i]);
         }
 

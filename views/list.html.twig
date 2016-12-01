@@ -8,13 +8,15 @@
 
     <div id="images">
       {% for image in images %}
-        <div class="image">
+        <div class="image" itemscope itemtype="http://schema.org/ImageObject">
           <a href="detail/{{ image.filename }}">
             <figure>
-              <div><img src="{{ image.path }}" alt="{{ image.filename }}"/></div>
+              <div><img itemprop="image" src="{{ image.path }}" alt="{{ image.filename }}"/></div>
               <figcaption>
-                <div>{{ image.name }}</div>
-                <div class="author">{{ image.author }}</div>
+                <div itemprop="name">{{ image.name }}</div>
+                <div class="author" itemprop="author">{{ image.author }}</div>
+                <span itemprop="description" content="{{ image.description }}"></span>
+                <span itemprop="contentLocation" content="{{ image.location }}"></span>
               </figcaption>
             </figure>
           </a>
