@@ -4,7 +4,7 @@ namespace YF\Provider;
 
 class Exiftool
 {
-    public function __construct(String $path)
+    public function __construct(string $path)
     {
         $this->path = $path;
         $this->bin = '';
@@ -13,7 +13,7 @@ class Exiftool
         }
     }
 
-    public function getData()
+    public function getData(): array
     {
         $exe = $this->bin.'exiftool';
 

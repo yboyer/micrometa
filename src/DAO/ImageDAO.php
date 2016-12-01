@@ -14,43 +14,65 @@ class ImageDAO
         $this->imagesPath = dirname(__FILE__).'/../../web/images/';
     }
 
-    public function findAll()
+    /**
+     * Checks if the images exists on the server
+     * @return True if the image exists
+     */
+    private function exists(string $filename): bool
+    {
+        return file_exists($this->imagesPath.$filename);
+    }
+
+    /**
+     * Retrieve all images
+     * @return An array of images
+     */
+    public function findAll(): array
     {
         $images = array_values(array_diff(scandir($this->imagesPath), array('..', '.')));
 
         for ($i = count($images) - 1; $i >= 0; --$i) {
-            $data = (new Exiftool($this->imagesPath.$images[$i]))->getData();
-
-            $images[$i] = [
-                'filename' => $images[$i],
-                'path' => 'images/'.$images[$i],
-                'name' => $data['XMP-dc']['Title'],
-                'author' => $data['XMP-dc']['Creator'],
-                'description' => $data['XMP-dc']['Description'],
-            ];
-            if (isset($data['XMP-iptcCore'])) {
-                if (isset($data['XMP-iptcCore']['Location'])) {
-                    $images[$i]['location'] = $data['XMP-iptcCore']['Location'];
-                }
-            }
-            $images[$i] = new Image($images[$i]);
+            $images[$i] = $this->getImageWithData($images[$i]);
         }
 
         return $images;
     }
 
-    public function findOne($filename)
+    /**
+     * Return an image containing all its metadata
+     * @param $filename The file name to retrieve
+     * @return An image with metadata
+     */
+    private function getImageWithData(string $filename): Image
     {
         $data = (new Exiftool($this->imagesPath.$filename))->getData();
 
-        if ($data == null) {
-            return;
-        }
-
-        return new Image([
+        $image = [
             'filename' => $filename,
             'path' => 'images/'.$filename,
             'data' => $data,
-        ]);
+            'name' => $data['XMP-dc']['Title'],
+            'author' => $data['XMP-dc']['Creator'],
+            'description' => $data['XMP-dc']['Description'],
+        ];
+        if (isset($data['XMP-iptcCore'])) {
+            if (isset($data['XMP-iptcCore']['Location'])) {
+                $image['location'] = $data['XMP-iptcCore']['Location'];
+            }
+        }
+        return new Image($image);
+    }
+
+    /**
+     * Retrieve an image to a given file name
+     * @param $filename the
+     */
+    public function findOne(string $filename)
+    {
+        if (!$this->exists($filename)) {
+            return null;
+        }
+
+        return $this->getImageWithData($filename);
     }
 }

@@ -10,7 +10,7 @@ $app->get('/', function () use ($app) {
     ]);
 });
 
-$app->get('/detail/{filename}', function ($filename) use ($app) {
+$app->get('/detail/{filename}', function (string $filename) use ($app) {
     $image = $app['dao.image']->findOne($filename);
 
     if ($image == null) {
