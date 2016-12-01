@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "preinstall": "composer install",
+    "postinstall": "npm run sass",
+    "sass": "node-sass --output-style compressed web/scss/main.scss web/css/style.css",
+    "watch-sass": "node-sass --output-style compressed web/scss/main.scss web/css/style.css --watch"
+  },
+  "devDependencies": {
+    "node-sass": "^3.13.0"
+  }
+}

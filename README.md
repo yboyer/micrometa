@@ -9,15 +9,15 @@
 
 ## Prerequisites:
   - [`composer`](https://getcomposer.org/download/)
+  - `Node.js` and `npm`
 
 ## Usage:
 ### Install
 ##### Clone the GitHub repo:
 ```bash
-git clone https://github.com/yboyer/micrometa.git
-cd micrometa
+git clone https://github.com/yboyer/micrometa.git && cd micrometa
 ```
 ##### Install dependencies:
 ```bash
-composer install
+npm i
 ```
