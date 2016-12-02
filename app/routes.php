@@ -5,6 +5,8 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\Response;
 
+
+// Sends the list stored files
 $app->get('/', function () use ($app) {
     $images = $app['dao.image']->findAll();
 
@@ -13,6 +15,8 @@ $app->get('/', function () use ($app) {
     ]);
 })->bind('list');
 
+
+// Sends the detail of a given file
 $app->get('/detail/{filename}', function (string $filename) use ($app) {
     $image = $app['dao.image']->findOne($filename);
 
@@ -25,6 +29,8 @@ $app->get('/detail/{filename}', function (string $filename) use ($app) {
     ]);
 })->bind('detail');
 
+
+// Downloads a given file
 $app->get('/download/{filename}', function (string $filename) use ($app) {
     $image = $app['dao.image']->findOne($filename);
 
@@ -38,6 +44,8 @@ $app->get('/download/{filename}', function (string $filename) use ($app) {
     return $response;
 })->bind('downloadFile');
 
+
+// Downloads the XMP Sidecar file of a given file
 $app->get('/xmp/{filename}', function (string $filename) use ($app) {
     $xmp = $app['dao.image']->getXmp($filename);
 
@@ -56,6 +64,8 @@ $app->get('/xmp/{filename}', function (string $filename) use ($app) {
     return $response;
 })->bind('downloadXmp');
 
+
+// 404 page
 $app->error(function (\Exception $e, Request $res, $code) use ($app) {
     switch ($code) {
         case 404:
