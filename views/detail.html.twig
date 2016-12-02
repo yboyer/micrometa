@@ -19,6 +19,7 @@
             <span itemprop="contentLocation" content="{{ image.location }}"></span>
           </figcaption>
         </figure>
+        <a class="download button button-outline" href="{{ path('download', {filename: image.filename}) }}" target="_blank">Télécharger l'image</a>
       </aside>
 
       <aside id="data">

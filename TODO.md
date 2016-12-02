@@ -13,7 +13,7 @@
     - [ ] Microdata
     - [ ] Open Graph
     - [ ] Twitter Cards
-  - [ ] Lien pour télécharger l'image
+  - [x] Lien pour télécharger l'image
   - [ ] Lien pour télécharger le fichier XMP Sidecar
 - Ajout: `/add`
   - [ ] Upload de fichier

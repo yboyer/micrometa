@@ -1,6 +1,9 @@
 <?php
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+
 
 $app->get('/', function () use ($app) {
     $images = $app['dao.image']->findAll();
@@ -21,6 +24,20 @@ $app->get('/detail/{filename}', function (string $filename) use ($app) {
         'image' => $image,
     ]);
 })->bind('detail');
+
+$app->get('/download/{filename}', function (string $filename) use ($app) {
+    $image = $app['dao.image']->findOne($filename);
+
+    if ($image == null) {
+        $app->abort(404, 'Cette image n\'existe pas');
+    }
+
+    $response = new BinaryFileResponse($image->getPath());
+    $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT);
+
+    return $response;
+
+})->bind('download');
 
 $app->error(function (\Exception $e, Request $res, $code) use ($app) {
     switch ($code) {
