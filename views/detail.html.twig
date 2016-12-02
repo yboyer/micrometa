@@ -4,11 +4,48 @@
 
 {% block main %}
   <div id="detail">
-    <h1>Detail</h1>
-    <div>
-      <div id="image">
-        <img src="{{ root }}{{ image.path }}" alt="">
-      </div>
-    </div>
+    <h1>Détails pour <span class="filename">{{ image.filename }}</span></h1>
+    <section>
+
+      <aside id="image">
+        <figure>
+          <div>
+            <img itemprop="image" src="{{ root }}{{ image.path }}" alt="{{ image.filename }}"/>
+          </div>
+          <figcaption>
+            <div class="name" itemprop="name">{{ image.name }}</div>
+            <div itemprop="author">{{ image.author }}</div>
+            <span itemprop="description" content="{{ image.description }}"></span>
+            <span itemprop="contentLocation" content="{{ image.location }}"></span>
+          </figcaption>
+        </figure>
+      </aside>
+
+      <aside id="data">
+        <h2>Liste de métadonnées</h2>
+        {% for key, data in image.data %}{% if key != 'SourceFile' %}
+          <section>
+            <h3>{{ key }}:</h3>
+            <div class="content">
+              {% if data is iterable %}{% for subKey, subData in data %}
+              <section>
+                <h3>{{ subKey }}:</h3>
+                <div class="content">
+                  {% if subData is iterable %}
+                    {{ subData|join(', ') }}
+                  {% else %}
+                    {{ subData }}
+                  {% endif %}
+                </div>
+              </section>
+              {% endfor %}{% else %}
+                {{ data }}
+              {% endif %}
+            </div>
+          </section>
+        {% endif %}{% endfor %}
+      </aside>
+
+    </section>
   </div>
 {% endblock %}

@@ -9,7 +9,7 @@
   - [x] Microdata
 - Détail: `/detail/{filename}`
   - [x] Affichage de l'image
-  - [ ] Affichage des métadonnées
+  - [x] Affichage des métadonnées
     - [ ] Microdata
     - [ ] Open Graph
     - [ ] Twitter Cards
