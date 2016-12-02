@@ -9,7 +9,7 @@
     <div id="images">
       {% for image in images %}
         <div class="image" itemscope itemtype="http://schema.org/ImageObject">
-          <a href="detail/{{ image.filename }}">
+          <a href="{{ path('detail', {filename: image.filename}) }}">
             <figure>
               <div><img itemprop="image" src="{{ image.path }}" alt="{{ image.filename }}"/></div>
               <figcaption>

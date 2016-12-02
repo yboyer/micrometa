@@ -8,7 +8,7 @@ $app->get('/', function () use ($app) {
     return $app['twig']->render('list.html.twig', [
         'images' => $images,
     ]);
-});
+})->bind('list');
 
 $app->get('/detail/{filename}', function (string $filename) use ($app) {
     $image = $app['dao.image']->findOne($filename);
@@ -20,7 +20,7 @@ $app->get('/detail/{filename}', function (string $filename) use ($app) {
     return $app['twig']->render('detail.html.twig', [
         'image' => $image,
     ]);
-});
+})->bind('detail');
 
 $app->error(function (\Exception $e, Request $res, $code) use ($app) {
     switch ($code) {
