@@ -14,7 +14,7 @@
     - [ ] Open Graph
     - [ ] Twitter Cards
   - [x] Lien pour télécharger l'image
-  - [ ] Lien pour télécharger le fichier XMP Sidecar
+  - [x] Lien pour télécharger le fichier XMP Sidecar
 - Ajout: `/add`
   - [ ] Upload de fichier
   - [ ] Extraction des métadonnées dans un formulaire pour modification et validation

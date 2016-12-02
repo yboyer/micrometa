@@ -65,7 +65,8 @@ class ImageDAO
 
     /**
      * Retrieve an image to a given file name
-     * @param $filename the
+     * @param $filename The given file name
+     * @return An image
      */
     public function findOne(string $filename)
     {
@@ -74,5 +75,19 @@ class ImageDAO
         }
 
         return $this->getImageWithData($filename);
+    }
+
+    /**
+     * Retrieve the XMP Sidecar file content of a given file name
+     * @param $filename The given file name
+     * @return The XMP Sidecar file
+     */
+    public function getXmp(string $filename)
+    {
+        if (!$this->exists($filename)) {
+            return null;
+        }
+
+        return (new Exiftool($this->imagesPath.$filename))->getXmp();
     }
 }
