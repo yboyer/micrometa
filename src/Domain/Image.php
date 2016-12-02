@@ -10,6 +10,7 @@ class Image extends Domain
     private $author;
     private $description;
     private $location;
+    private $data;
 
     /**
      * Get the value of Filename
@@ -151,6 +152,30 @@ class Image extends Domain
     public function setLocation($location): Image
     {
         $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Data
+     *
+     * @return mixed
+     */
+    public function getData(): array
+    {
+        return $this->data;
+    }
+
+    /**
+     * Set the value of Data
+     *
+     * @param mixed data
+     *
+     * @return self
+     */
+    public function setData(array $data): Image
+    {
+        $this->data = $data;
 
         return $this;
     }
