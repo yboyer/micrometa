@@ -30,6 +30,6 @@
   - Carte: `/map`
     - [ ] Affichage des images sur une cartes
   - Global
-    - [ ] Stocker les métadonnées au lieu de les rechercher avec `exiftool` (sans base de données)
+    - [x] Stocker les métadonnées au lieu de les rechercher avec `exiftool` (sans base de données)
     - [ ] Détection des incohérances des métadonnées dans une image (EXITF, IPTC, XMP)
       - [ ] `git diff` like
