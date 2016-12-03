@@ -12,6 +12,7 @@ class ImageDAO
     public function __construct()
     {
         $this->imagesPath = dirname(__FILE__).'/../../web/images/';
+        $this->exiftool = new Exiftool();
     }
 
     /**
@@ -45,20 +46,36 @@ class ImageDAO
      */
     private function getImageWithData(string $filename): Image
     {
-        $data = (new Exiftool($this->imagesPath.$filename))->getData();
+        $data = $this->exiftool->getData($this->imagesPath.$filename);
 
         $image = [
             'filename' => $filename,
             'path' => 'images/'.$filename,
-            'data' => $data,
-            'name' => $data['XMP-dc']['Title'],
-            'author' => $data['XMP-dc']['Creator'],
-            'description' => $data['XMP-dc']['Description'],
+            'data' => $data
         ];
-        if (isset($data['XMP-iptcCore'])) {
-            if (isset($data['XMP-iptcCore']['Location'])) {
-                $image['location'] = $data['XMP-iptcCore']['Location'];
+        if (isset($data['XMP'])) {
+            if (isset($data['XMP']['Title'])) {
+                $image['name'] = $data['XMP']['Title'];
             }
+            if (isset($data['XMP']['Creator'])) {
+                $image['author'] = $data['XMP']['Creator'];
+            }
+            if (isset($data['XMP']['Description'])) {
+                $image['description'] = $data['XMP']['Description'];
+            }
+
+            if (isset($data['XMP']['Location'])) {
+                $image['location'] = $data['XMP']['Location'];
+            }
+            if (isset($data['XMP']['City'])) {
+                $image['location'] = $data['XMP']['City'];
+
+                if (isset($data['XMP']['Country'])) {
+                    $image['location'] .= ', '.$data['XMP']['Country'];
+                }
+            }
+        } else {
+            $image['name'] = $filename;
         }
         return new Image($image);
     }
@@ -82,12 +99,12 @@ class ImageDAO
      * @param $filename The given file name
      * @return The XMP Sidecar file
      */
-    public function getXmp(string $filename)
+    public function getXMPSidecarContent(string $filename)
     {
         if (!$this->exists($filename)) {
             return null;
         }
 
-        return (new Exiftool($this->imagesPath.$filename))->getXmp();
+        return $this->exiftool->getXMPSidecarContent($this->imagesPath.$filename);
     }
 }

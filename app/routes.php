@@ -47,7 +47,7 @@ $app->get('/download/{filename}', function (string $filename) use ($app) {
 
 // Downloads the XMP Sidecar file of a given file
 $app->get('/xmp/{filename}', function (string $filename) use ($app) {
-    $xmp = $app['dao.image']->getXmp($filename);
+    $xmp = $app['dao.image']->getXMPSidecarContent($filename);
 
     if ($xmp == null) {
         $app->abort(404, 'Cette image n\'existe pas');

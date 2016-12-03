@@ -4,9 +4,8 @@ namespace YF\Provider;
 
 class Exiftool
 {
-    public function __construct(string $path)
+    public function __construct()
     {
-        $this->path = $path;
         $bin = '';
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
             $bin = dirname(__FILE__).'/';
@@ -18,26 +17,31 @@ class Exiftool
      * Retreive the metadata of the file
      * @return The metadata of the file
      */
-    public function getData(): array
+    public function getData(string $path): array
     {
-        $filename = basename($this->path);
+        $key = basename($path);
 
-        if (!JsonManager::getInstance()->exists($filename)) {
+        if (!JsonManager::getInstance()->exists($key)) {
+            $data = json_decode(shell_exec("$this->exe $path -json -g"), true)[0];
+            unset($data['Preview']);
+            unset($data['ExifTool']);
+            unset($data['File']);
+
             JsonManager::getInstance()->set(
-                $filename,
-                json_decode(shell_exec("$this->exe $this->path -json -g1 -xmp:all"), true)[0]
+                $key,
+                $data
             );
         }
 
-        return JsonManager::getInstance()->get($filename);
+        return JsonManager::getInstance()->get($key);
     }
 
     /**
      * Retreive the content of the XMP Sidecar file
      * @return The content of the XMP Sidecar file
      */
-    public function getXmp(): string
+    public function getXMPSidecarContent(string $path)
     {
-        return shell_exec("$this->exe -xmp -b $this->path");
+        return shell_exec("$this->exe -xmp -b $path");
     }
 }
