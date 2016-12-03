@@ -50,7 +50,7 @@ $app->get('/xmp/{filename}', function (string $filename) use ($app) {
     $xmp = $app['dao.image']->getXMPSidecarContent($filename);
 
     if ($xmp == null) {
-        $app->abort(404, 'Cette image n\'existe pas');
+        $app->abort(500, 'Impossible d\'extraire le contenu XMP Sidecar');
     }
 
     $response = new Response();
@@ -67,8 +67,17 @@ $app->get('/xmp/{filename}', function (string $filename) use ($app) {
 
 // 404 page
 $app->error(function (\Exception $e, Request $res, $code) use ($app) {
+    $message = $e->getMessage();
+    if (strpos($message, 'No route found') !== false) {
+        $message = 'Page introuvable';
+    }
+
     switch ($code) {
+        case 500:
         case 404:
-            return $app['twig']->render('404.html.twig');
+            return $app['twig']->render('error.html.twig', [
+                'code' => $code,
+                'message' => $message
+            ]);
     }
 });
