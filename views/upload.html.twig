@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Ajouter une image{% endblock %}
+
+{% block main %}
+  <div id="list">
+    <h1>Ajouter une image</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+      <fieldset>
+        {{ form_widget(form) }}
+      </fieldset>
+      <input type="submit" name="Upload File"/>
+    </form>
+  </div>
+{% endblock %}

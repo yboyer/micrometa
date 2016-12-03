@@ -4,7 +4,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\Response;
-
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 // Sends the list stored files
 $app->get('/', function () use ($app) {
@@ -63,6 +64,32 @@ $app->get('/xmp/{filename}', function (string $filename) use ($app) {
 
     return $response;
 })->bind('downloadXmp');
+
+// Upload
+$app->match('/upload', function (Request $request) use ($app) {
+    $form = $app['form.factory']
+        ->createBuilder(FormType::class)
+        ->add('image', FileType::class)
+        ->getForm()
+    ;
+
+    $form->handleRequest($request);
+
+    if ($request->isMethod('POST')) {
+        if ($form->isValid()) {
+            $image = $form['image']->getData();
+
+            $image->move(
+                __DIR__.'/../web/images/',
+                $image->getClientOriginalName()
+            );
+        }
+    }
+
+    return $app['twig']->render('upload.html.twig', [
+        'form' => $form->createView()
+    ]);
+}, 'GET|POST')->bind('upload');
 
 
 // 404 page
