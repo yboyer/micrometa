@@ -23,6 +23,9 @@ class Exiftool
 
         if (!JsonManager::getInstance()->exists($key)) {
             $data = json_decode(shell_exec("$this->exe $path -json -g"), true)[0];
+            if (is_null($data)) {
+                $data = [];
+            }
             unset($data['Preview']);
             unset($data['ExifTool']);
             unset($data['File']);
