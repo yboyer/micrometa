@@ -1,4 +1,4 @@
 vendor/
 web/css/
 node_modules/
-web/data.json
+web/metadatas.json

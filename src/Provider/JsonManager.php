@@ -6,7 +6,7 @@ class JsonManager
 {
     private static $INSTANCE = null;
 
-    private $dataFilename = 'data.json';
+    private $dataFilename = __DIR__.'/../../web/metadatas.json';
     private $data = [];
 
 
