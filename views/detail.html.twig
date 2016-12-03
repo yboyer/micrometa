@@ -19,8 +19,12 @@
             <span itemprop="contentLocation" content="{{ image.location }}"></span>
           </figcaption>
         </figure>
-        <a class="download button button-outline" href="{{ path('downloadFile', {filename: image.filename}) }}" target="_blank">Télécharger l'image</a>
-        <a class="download button button-outline" href="{{ path('downloadXmp', {filename: image.filename}) }}" target="_blank">Télécharger le fichier XMP Sidecar</a>
+        <div>
+          <a class="download button button-outline" href="{{ path('downloadFile', {filename: image.filename}) }}" target="_blank">Télécharger l'image</a>
+        </div>
+        <div>
+          <a class="download button button-outline" href="{{ path('downloadXmp', {filename: image.filename}) }}" target="_blank">Télécharger le fichier XMP Sidecar</a>
+        </div>
       </aside>
 
       <aside id="data">
