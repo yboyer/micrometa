@@ -23,4 +23,7 @@ $app->register(new TranslationServiceProvider(), [
 $app->register(new Silex\Provider\TwigServiceProvider(), [
     'twig.path' => __DIR__.'/../views',
 ]);
-$app['twig']->addGlobal('root', '/');
+if (( $rootPath = dirname($_SERVER['SCRIPT_NAME']) ) !== '/') {
+    $rootPath .= '/';
+}
+$app['twig']->addGlobal('root', $rootPath);
