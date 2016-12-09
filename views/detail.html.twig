@@ -52,6 +52,12 @@
             <h3>{{ key }}:</h3>
             <div class="content">
               {% if data is iterable %}{% for subKey, subData in data %}
+              {% if key == 'EXIF' %}
+                <div itemprop="exifData" itemscope itemtype="http://schema.org/PropertyValue">
+                  <meta itemprop="name" content="{{ subKey }}">
+                  <meta itemprop="value" content="{{ subData }}">
+                </div>
+              {% endif %}
               <section>
                 <h3>{{ subKey }}:</h3>
                 <div class="content">
