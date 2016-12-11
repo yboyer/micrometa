@@ -10,9 +10,9 @@
 - Détail: `/detail/{filename}`
   - [x] Affichage de l'image
   - [x] Affichage des métadonnées
-    - [ ] Microdata
-    - [-] Open Graph
-    - [-] Twitter Cards
+    - [x] Microdata
+    - [x] Open Graph
+    - [x] Twitter Cards
   - [x] Lien pour télécharger l'image
   - [x] Lien pour télécharger le fichier XMP Sidecar
 - Ajout: `/add`
