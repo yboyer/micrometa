@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Modifier les metadata de l'image{% endblock %}
+
+{% block main %}
+  <div id="detail">
+    <h1>Détails pour <span class="filename">{{ image.filename }}</span></h1>
+    <section>
+      <aside id="image">
+        <figure>
+          <div>
+            <img itemprop="image" src="{{ root }}{{ image.path }}" alt="{{ image.filename }}"/>
+          </div>
+          <figcaption>
+            <div class="name" itemprop="name">{{ image.name }}</div>
+            <div itemprop="author">{{ image.author }}</div>
+            <span itemprop="description" content="{{ image.description }}"></span>
+            <span itemprop="contentLocation" content="{{ image.location }}"></span>
+          </figcaption>
+        </figure>
+        <aside id="data">
+          <h2>Liste de métadonnées</h2>
+          <form method="POST" enctype="multipart/form-data">
+            <fieldset>
+              {{ form_widget(form) }}
+            </fieldset>
+            <input type="submit" name="Data validation"/>
+          </form>
+        </aside>
+      </section>
+    </div>
+  {% endblock %}

@@ -40,6 +40,14 @@ class ImageDAO
     }
 
     /**
+     * Call exiftool with datas to insert into the image
+     */
+    public function updateMetadata(string $filename, array $metadata)
+    {
+        return $this->exiftool->setDatas($this->imagesPath.$filename, $metadata);
+    }
+
+    /**
      * Return an image containing all its metadata
      * @param $filename The file name to retrieve
      * @return An image with metadata

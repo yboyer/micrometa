@@ -6,7 +6,7 @@
   <div id="list">
     <h1>Ajouter une image</h1>
 
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" action="{{ path('uploadStep2') }}" enctype="multipart/form-data">
       <fieldset>
         {{ form_widget(form) }}
       </fieldset>

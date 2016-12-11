@@ -17,8 +17,8 @@
   - [x] Lien pour télécharger le fichier XMP Sidecar
 - Ajout: `/add`
   - [x] Upload de fichier
-  - [ ] Extraction des métadonnées dans un formulaire pour modification et validation
-    - [ ] Modification des métadonnées de l'image
+  - [x] Extraction des métadonnées dans un formulaire pour modification et validation
+    - [x] Modification des métadonnées de l'image
 
 
 - ***++***
