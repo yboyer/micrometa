@@ -1,0 +1,23 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Liste des images{% endblock %}
+
+{% block main %}
+  <h1>Map</h1>
+  <div id="map"></div>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8J2Uspirmmtm8qwe3zabdxoHTlCjxsCw"></script>
+  <script type="text/javascript" src="js/map.js"></script>
+
+  {% for image in images %}
+    <script type="text/javascript">
+      {% autoescape 'js' %}
+        var description = "{{ image.description }}";
+      {% endautoescape %}
+      var name = "{{ image.name }}";
+      var path = "{{ image.path }}";
+      var dataLocation = "{{ image.location }}";
+      getgeocodeFromCity(description, name, path, dataLocation);
+    </script>
+  {% endfor %}
+
+{% endblock %}
