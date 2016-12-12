@@ -15,6 +15,7 @@ class Exiftool
 
     /**
      * Retreive the metadata of the file
+     * @param $path The path of the file name
      * @return The metadata of the file
      */
     public function getData(string $path): array
@@ -40,27 +41,41 @@ class Exiftool
     }
 
     /**
-     *Set the metadata of the file
+     * Set the metadata of the file
+     * @param $path The path of the file name
+     * @param $data The metadatas to add
      */
-    public function setDatas($path, array $data)
+    public function setDatas(string $path, array $data)
     {
-        $params ='';
-        foreach ($data as $bigIdentifier => $subIdentifier) {
-            foreach ($subIdentifier as $realSubIdentifier => $firstValue) {
-                if (is_array($firstValue)) {
-                    foreach ($firstValue as $subSubIdentifier => $endValue) {
-                        $params .= ' -'.$realSubIdentifier.':'.$subSubIdentifier.'='.$endValue;
+        $primaryKey = basename($path);
+
+        $params = '';
+        foreach ($data as $key => $value) {
+            foreach ($value as $subKey => $subValue) {
+                if (is_array($subValue)) {
+                    foreach ($subValue as $subSubValue) {
+                        $params .= " -$key:$subKey=\"$subSubValue\"";
                     }
                 } else {
-                    $params .= ' -'.$bigIdentifier.':'.$realSubIdentifier.'='.$firstValue;
+                    $params .= " -$key:$subKey=\"$subValue\"";
                 }
+
+                // Update the database
+                JsonManager::getInstance()->update(
+                    "$primaryKey:$key:$subKey",
+                    $subValue
+                );
             }
-            shell_exec("$this->exe $params $path -overwrite_original");
         }
+        // Update the file
+        shell_exec("$this->exe $params $path -overwrite_original");
+        // Write changes into the file
+        JsonManager::getInstance()->save();
     }
 
     /**
      * Retreive the content of the XMP Sidecar file
+     * @param $path The path of the file name
      * @return The content of the XMP Sidecar file
      */
     public function getXMPSidecarContent(string $path)

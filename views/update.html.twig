@@ -18,15 +18,16 @@
             <span itemprop="contentLocation" content="{{ image.location }}"></span>
           </figcaption>
         </figure>
-        <aside id="data">
-          <h2>Liste de métadonnées</h2>
-          <form method="POST" enctype="multipart/form-data">
-            <fieldset>
-              {{ form_widget(form) }}
-            </fieldset>
-            <input type="submit" name="Data validation"/>
-          </form>
-        </aside>
-      </section>
-    </div>
-  {% endblock %}
+      </aside>
+      <aside id="data">
+        <h2>Liste de métadonnées</h2>
+        <form method="POST" enctype="multipart/form-data">
+          <fieldset>
+            {{ form_widget(form) }}
+          </fieldset>
+          <input type="submit" name="Data validation"/>
+        </form>
+      </aside>
+    </section>
+  </div>
+{% endblock %}

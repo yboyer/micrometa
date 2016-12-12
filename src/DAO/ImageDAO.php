@@ -19,7 +19,7 @@ class ImageDAO
      * Checks if the images exists on the server
      * @return True if the image exists
      */
-    private function exists(string $filename): bool
+    public function exists(string $filename): bool
     {
         return file_exists($this->imagesPath.$filename);
     }

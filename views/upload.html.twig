@@ -6,11 +6,13 @@
   <div id="list">
     <h1>Ajouter une image</h1>
 
-    <form method="POST" action="{{ path('uploadStep2') }}" enctype="multipart/form-data">
+    {{ form_start(form) }}
       <fieldset>
-        {{ form_widget(form) }}
+        {{ form_label(form.image) }}
+        {{ form_widget(form.image) }}
+        {{ form_errors(form.image) }}
       </fieldset>
       <input type="submit" name="Upload File"/>
-    </form>
+    {{ form_end(form) }}
   </div>
 {% endblock %}
