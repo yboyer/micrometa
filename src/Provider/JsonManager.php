@@ -61,4 +61,23 @@ class JsonManager
         $this->data[$key] = $value;
         file_put_contents($this->dataFilename, json_encode($this->data));
     }
+
+    /**
+     * Update the value to the keys index
+     * @param $key The keys
+     * @param $key The Value
+     */
+    public function update(string $keys, $value)
+    {
+        $keys = explode(':', $keys);
+        $this->data[$keys[0]][$keys[1]][$keys[2]] = $value;
+    }
+
+    /**
+     * Save data into the file
+     */
+    public function save()
+    {
+        file_put_contents($this->dataFilename, json_encode($this->data));
+    }
 }
