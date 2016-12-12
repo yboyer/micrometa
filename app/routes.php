@@ -20,6 +20,14 @@ $app->get('/', function () use ($app) {
     ]);
 })->bind('list');
 
+//send the map
+$app->get('/map', function () use ($app) {
+    $images = $app['dao.image']->findAll();
+
+    return $app->render('map.html.twig', [
+        'images' => $images,
+    ]);
+})->bind('map');
 
 // Sends the detail of a given file
 $app->get('/detail/{filename}', function (string $filename) use ($app) {
