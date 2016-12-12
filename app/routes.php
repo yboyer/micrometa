@@ -14,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 $app->get('/', function () use ($app) {
     $images = $app['dao.image']->findAll();
 
-    return $app['twig']->render('list.html.twig', [
+    return $app->render('list.html.twig', [
         'images' => $images,
     ]);
 })->bind('list');
@@ -25,10 +25,10 @@ $app->get('/detail/{filename}', function (string $filename) use ($app) {
     $image = $app['dao.image']->findOne($filename);
 
     if ($image == null) {
-        $app->abort(404, 'Cette image n\'existe pas');
+        return $app->abort(404, 'Cette image n\'existe pas');
     }
 
-    return $app['twig']->render('detail.html.twig', [
+    return $app->render('detail.html.twig', [
         'image' => $image,
     ]);
 })->bind('detail');
@@ -39,7 +39,7 @@ $app->get('/download/{filename}', function (string $filename) use ($app) {
     $image = $app['dao.image']->findOne($filename);
 
     if ($image == null) {
-        $app->abort(404, 'Cette image n\'existe pas');
+        return $app->abort(404, 'Cette image n\'existe pas');
     }
 
     $response = new BinaryFileResponse($image->getPath());
@@ -54,7 +54,7 @@ $app->get('/xmp/{filename}', function (string $filename) use ($app) {
     $xmp = $app['dao.image']->getXMPSidecarContent($filename);
 
     if ($xmp == null) {
-        $app->abort(500, 'Impossible d\'extraire le contenu XMP Sidecar');
+        return $app->abort(500, 'Impossible d\'extraire le contenu XMP Sidecar');
     }
 
     $response = new Response();
@@ -71,11 +71,11 @@ $app->get('/xmp/{filename}', function (string $filename) use ($app) {
 
 // Upload
 $app->match('/upload', function (Request $request) use ($app) {
-    $form = $app['form.factory']
-        ->createBuilder(FormType::class)
-        ->add('image', FileType::class)
-        ->getForm()
-    ;
+    $form = $app->form()
+        ->add('image', FileType::class, [
+            'constraints' => new Assert\Image(),
+        ])
+        ->getForm();
 
     $form->handleRequest($request);
 
@@ -90,7 +90,7 @@ $app->match('/upload', function (Request $request) use ($app) {
         }
     }
 
-    return $app['twig']->render('upload.html.twig', [
+    return $app->render('upload.html.twig', [
         'form' => $form->createView()
     ]);
 }, 'GET|POST')->bind('upload');
@@ -193,7 +193,7 @@ $app->error(function (\Exception $e, Request $res, $code) use ($app) {
     switch ($code) {
         case 500:
         case 404:
-            return $app['twig']->render('error.html.twig', [
+            return $app->render('error.html.twig', [
                 'code' => $code,
                 'message' => $message
             ]);
