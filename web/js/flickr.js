@@ -42,12 +42,7 @@ function createFlickrElement(imgName, img, imgUrl) {
     aElement.appendChild(imgContainerElement);
 
     var infosElement = document.createElement('figcaption');
-    infosElement.className = 'infos middle';
-    var nameElement = document.createElement('div');
-    nameElement.className = 'caption';
-    var nameText = document.createTextNode(imgName);
-    nameElement.appendChild(nameText);
-    infosElement.appendChild(nameElement);
+    infosElement.textContent = imgName;
 
     aElement.appendChild(infosElement);
     figElement.appendChild(aElement);

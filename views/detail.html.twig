@@ -50,44 +50,44 @@
         <div>
           <a class="download button button-outline" href="{{ path('update', {filename: image.filename}) }}">Mettre à jour</a>
         </div>
-        {% for key, data in image.data %}{% if key != 'SourceFile' %}
+        <div class="sections">
+          {% for key, data in image.data %}{% if key != 'SourceFile' %}
           <section>
             <h3>{{ key }}:</h3>
             <div class="content">
               {% if data is iterable %}{% for subKey, subData in data %}
               {% if key == 'EXIF' %}
-                <div itemprop="exifData" itemscope itemtype="http://schema.org/PropertyValue">
-                  <meta itemprop="name" content="{{ subKey }}">
-                  <meta itemprop="value" content="{{ subData }}">
-                </div>
+              <div itemprop="exifData" itemscope itemtype="http://schema.org/PropertyValue">
+                <meta itemprop="name" content="{{ subKey }}">
+                <meta itemprop="value" content="{{ subData }}">
+              </div>
               {% endif %}
               <section>
                 <h3>{{ subKey }}:</h3>
                 <div class="content">
                   {% if subData is iterable %}
-                    {{ subData|join(', ') }}
-                    <script type="text/javascript">
-                    var tags ="{{ subData|join(',') }}";
-                    </script>
+                  {{ subData|join(', ') }}
+                  <script type="text/javascript">
+                  var tags ="{{ subData|join(',') }}";
+                  </script>
                   {% else %}
-                    {{ subData }}
+                  {{ subData }}
                   {% endif %}
                 </div>
               </section>
               {% endfor %}{% else %}
-                {{ data }}
+              {{ data }}
               {% endif %}
             </div>
           </section>
-        {% endif %}{% endfor %}
+          {% endif %}{% endfor %}
+        </div>
       </aside>
 
     </section>
-    <h2>Flickr search</h2>
+    <h2>Correspondances Flickr</h2>
     <section>
-      <ul id="flickr">
-
-      </ul>
+      <ul id="flickr"></ul>
     </section>
   </div>
   <script type="text/javascript" src="js/flickr.js"></script>
