@@ -47,6 +47,9 @@
 
       <aside id="data">
         <h2>Liste de métadonnées</h2>
+        <div>
+          <a class="download button button-outline" href="{{ path('update', {filename: image.filename}) }}">Mettre à jour</a>
+        </div>
         {% for key, data in image.data %}{% if key != 'SourceFile' %}
           <section>
             <h3>{{ key }}:</h3>
