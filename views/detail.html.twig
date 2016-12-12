@@ -63,6 +63,9 @@
                 <div class="content">
                   {% if subData is iterable %}
                     {{ subData|join(', ') }}
+                    <script type="text/javascript">
+                    var tags ="{{ subData|join(',') }}";
+                    </script>
                   {% else %}
                     {{ subData }}
                   {% endif %}
@@ -77,5 +80,12 @@
       </aside>
 
     </section>
+    <h2>Flickr search</h2>
+    <section>
+      <ul id="flickr">
+
+      </ul>
+    </section>
   </div>
+  <script type="text/javascript" src="js/flickr.js"></script>
 {% endblock %}

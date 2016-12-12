@@ -1,51 +1,90 @@
 #detail {
-  .filename {
-    font-style: italic;
-    text-decoration: underline;
-  }
-
-  > section {
-    display: flex;
-    align-items: flex-start;
-  }
-
-  aside#data {
-    padding-left: 15px;
-    border-left: 1px solid #b92425;
-    margin-left: 10px;
-
-    .content {
-      margin-left: 10px;
-      border-left: 1px solid rgba(0, 0, 0, 0.2);
-      padding-left: 10px;
-      padding-bottom: 10px;
+    .filename {
+        font-style: italic;
+        text-decoration: underline;
     }
-  }
 
-  h2 {
-    font-size: 1.75em;
-    font-weight: 400;
-  }
+    > section {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
 
-  h3 {
-    font-size: 1.2em;
-    font-weight: 500;
-    margin-bottom: 4px;
-    text-decoration: underline;
-  }
+    aside#data {
+        padding-left: 15px;
+        border-left: 1px solid #b92425;
+        margin-left: 10px;
+        max-height: 500px;
+        overflow: auto;
 
-  aside#image img {
-    max-width: 400px;
-    border-radius: 3px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  }
+        .content {
+            margin-left: 10px;
+            border-left: 1px solid rgba(0, 0, 0, 0.2);
+            padding-left: 10px;
+            padding-bottom: 10px;
+        }
+    }
 
-  figcaption .name {
-    font-size: 1.5em;
-    font-weight: 400;
-  }
+    h2 {
+        font-size: 1.75em;
+        font-weight: 400;
+    }
 
-  .download {
-    font-weight: 500;
-  }
+    h3 {
+        font-size: 1.2em;
+        font-weight: 500;
+        margin-bottom: 4px;
+        text-decoration: underline;
+    }
+
+    aside#image img {
+        max-width: 400px;
+        border-radius: 3px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    figcaption .name {
+        font-size: 1.5em;
+        font-weight: 400;
+    }
+
+    .download {
+        font-weight: 500;
+    }
+
+    #flickr li {
+        margin: 1.250em;
+        width: 220px;
+        overflow: hidden;
+        border-radius: 3px;
+        width: 100%;
+        max-width: 340px;
+        margin: 10px 1.250em;
+        display: inline-block;
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26), 0 2px 1px 0 rgba(0,0,0,0.16);
+        transition-duration: 200ms;
+        transition-property: box-shadow, opacity;
+
+    }
+
+    .imgContainer {
+        height: 280px;
+        overflow: hidden;
+    }
+
+    .imgContainer img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .caption {
+        font-size: 1em;
+        font-weight: 600;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-right: 1.250em;
+        line-height: 1.250em;
+    }
 }
