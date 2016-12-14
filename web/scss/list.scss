@@ -12,6 +12,7 @@
 
   figure {
     max-width: 275px;
+    @extend .shadow;
 
     > div {
       height: 140px;
