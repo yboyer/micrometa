@@ -153,7 +153,12 @@ $app->match('/update/{filename}', function (Request $request, $filename) use ($a
 
                 // Explode the field if it's supposed to be an array field
                 if ($subKey === 'Subject' || $subKey === 'Keywords') {
-                    $data = explode(', ', $data);
+                    $data = explode(',', $data);
+                    for ($i=0; $i < count($data); $i++) {
+                        $data[$i] = trim($data[$i]);
+                    }
+                } else {
+                    $data = trim($data);
                 }
                 $updatedMetadatas[$key][$subKey] = $data;
             }
