@@ -29,7 +29,7 @@ class Image extends Domain
      *
      * @return self
      */
-    public function setFilename($filename): Image
+    public function setFilename($filename)
     {
         $this->filename = $filename;
 
@@ -53,7 +53,7 @@ class Image extends Domain
      *
      * @return self
      */
-    public function setPath($path): Image
+    public function setPath($path)
     {
         $this->path = $path;
 
@@ -77,7 +77,7 @@ class Image extends Domain
      *
      * @return self
      */
-    public function setName($name): Image
+    public function setName($name)
     {
         $this->name = $name;
 
@@ -101,7 +101,7 @@ class Image extends Domain
      *
      * @return self
      */
-    public function setAuthor($author): Image
+    public function setAuthor($author)
     {
         $this->author = $author;
 
@@ -125,7 +125,7 @@ class Image extends Domain
      *
      * @return self
      */
-    public function setDescription($description): Image
+    public function setDescription($description)
     {
         $this->description = $description;
 
@@ -149,7 +149,7 @@ class Image extends Domain
      *
      * @return self
      */
-    public function setLocation($location): Image
+    public function setLocation($location)
     {
         $this->location = $location;
 
@@ -161,7 +161,7 @@ class Image extends Domain
      *
      * @return mixed
      */
-    public function getData(): array
+    public function getData()
     {
         return $this->data;
     }
@@ -173,7 +173,7 @@ class Image extends Domain
      *
      * @return self
      */
-    public function setData(array $data): Image
+    public function setData(array $data)
     {
         $this->data = $data;
 

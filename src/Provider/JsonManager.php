@@ -22,7 +22,7 @@ class JsonManager
      * Singleton method to return an unique instance of the class
      * @return The unique instance of the class
      */
-    public static function getInstance(): JsonManager
+    public static function getInstance()
     {
         if (is_null(self::$INSTANCE)) {
             self::$INSTANCE = new JsonManager();
@@ -36,7 +36,7 @@ class JsonManager
      * @param $key The key
      * @param True if the key exists
      */
-    public function exists(string $key): bool
+    public function exists($key)
     {
         return isset($this->data[$key]);
     }
@@ -46,7 +46,7 @@ class JsonManager
      * @param $key The key
      * @return The content of the key index
      */
-    public function get(string $key)
+    public function get($key)
     {
         return $this->data[$key];
     }
@@ -56,7 +56,7 @@ class JsonManager
      * @param $key The key
      * @param $key The Value
      */
-    public function set(string $key, $value)
+    public function set($key, $value)
     {
         $this->data[$key] = $value;
         file_put_contents($this->dataFilename, json_encode($this->data));
@@ -67,7 +67,7 @@ class JsonManager
      * @param $key The keys
      * @param $key The Value
      */
-    public function update(string $keys, $value)
+    public function update($keys, $value)
     {
         $keys = explode(':', $keys);
         $this->data[$keys[0]][$keys[1]][$keys[2]] = $value;

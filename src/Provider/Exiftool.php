@@ -18,7 +18,7 @@ class Exiftool
      * @param $path The path of the file name
      * @return The metadata of the file
      */
-    public function getData(string $path): array
+    public function getData($path)
     {
         $key = basename($path);
 

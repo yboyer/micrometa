@@ -19,7 +19,7 @@ class ImageDAO
      * Checks if the images exists on the server
      * @return True if the image exists
      */
-    public function exists(string $filename): bool
+    public function exists($filename)
     {
         return file_exists($this->imagesPath.$filename);
     }
@@ -28,7 +28,7 @@ class ImageDAO
      * Retrieve all images
      * @return An array of images
      */
-    public function findAll(): array
+    public function findAll()
     {
         $images = array_values(array_diff(scandir($this->imagesPath), array('..', '.')));
 
@@ -42,7 +42,7 @@ class ImageDAO
     /**
      * Call exiftool with datas to insert into the image
      */
-    public function updateMetadata(string $filename, array $metadata)
+    public function updateMetadata($filename, $metadata)
     {
         return $this->exiftool->setDatas($this->imagesPath.$filename, $metadata);
     }
@@ -52,7 +52,7 @@ class ImageDAO
      * @param $filename The file name to retrieve
      * @return An image with metadata
      */
-    private function getImageWithData(string $filename): Image
+    private function getImageWithData($filename)
     {
         $data = $this->exiftool->getData($this->imagesPath.$filename);
 
@@ -93,7 +93,7 @@ class ImageDAO
      * @param $filename The given file name
      * @return An image
      */
-    public function findOne(string $filename)
+    public function findOne($filename)
     {
         if (!$this->exists($filename)) {
             return null;
@@ -107,7 +107,7 @@ class ImageDAO
      * @param $filename The given file name
      * @return The XMP Sidecar file
      */
-    public function getXMPSidecarContent(string $filename)
+    public function getXMPSidecarContent($filename)
     {
         if (!$this->exists($filename)) {
             return null;

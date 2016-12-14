@@ -30,7 +30,7 @@ $app->get('/map', function () use ($app) {
 })->bind('map');
 
 // Sends the detail of a given file
-$app->get('/detail/{filename}', function (string $filename) use ($app) {
+$app->get('/detail/{filename}', function ($filename) use ($app) {
     $image = $app['dao.image']->findOne($filename);
 
     if ($image == null) {
@@ -44,7 +44,7 @@ $app->get('/detail/{filename}', function (string $filename) use ($app) {
 
 
 // Downloads a given file
-$app->get('/download/{filename}', function (string $filename) use ($app) {
+$app->get('/download/{filename}', function ($filename) use ($app) {
     $image = $app['dao.image']->findOne($filename);
 
     if ($image == null) {
@@ -59,7 +59,7 @@ $app->get('/download/{filename}', function (string $filename) use ($app) {
 
 
 // Downloads the XMP Sidecar file of a given file
-$app->get('/xmp/{filename}', function (string $filename) use ($app) {
+$app->get('/xmp/{filename}', function ($filename) use ($app) {
     $xmp = $app['dao.image']->getXMPSidecarContent($filename);
 
     if ($xmp == null) {
@@ -113,7 +113,7 @@ $app->match('/upload', function (Request $request) use ($app) {
 
 
 // Update
-$app->match('/update/{filename}', function (Request $request, string $filename) use ($app) {
+$app->match('/update/{filename}', function (Request $request, $filename) use ($app) {
     // Retrieve the image from its filename
     $image = $app['dao.image']->findOne($filename);
 
