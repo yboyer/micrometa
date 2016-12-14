@@ -21,12 +21,28 @@
       </aside>
       <aside id="data">
         <h2>Liste de métadonnées</h2>
-        <form method="POST" enctype="multipart/form-data">
-          <fieldset>
-            {{ form_widget(form) }}
+        {{ form_start(form) }}
+          {% set currentCateg = '' %}
+          {% for name in form|keys %}
+            {% set splited = name|split('---') %}
+            {% set newCateg = splited[0] %}
+            {% set newLabel = splited[1] %}
+
+            {% if currentCateg != newCateg %}
+              {% if currentCateg != '' %}</fieldset>{% endif %}
+              <fieldset>
+                <legend>{{ newCateg }}:</legend>
+            {% endif %}
+
+            {{ form_label(form[name], newLabel) }}
+            {{ form_widget(form[name]) }}
+            {{ form_errors(form[name]) }}
+
+            {% set currentCateg = newCateg %}
+          {% endfor %}
           </fieldset>
           <input type="submit" name="Data validation"/>
-        </form>
+        {{ form_end(form) }}
       </aside>
     </section>
   </div>
