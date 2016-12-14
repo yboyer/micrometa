@@ -2,3 +2,4 @@ vendor/
 web/css/
 node_modules/
 web/metadatas.json
+web/sidecar.xmp

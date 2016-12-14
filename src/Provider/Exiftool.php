@@ -45,7 +45,7 @@ class Exiftool
      * @param $path The path of the file name
      * @param $data The metadatas to add
      */
-    public function setDatas(string $path, array $data)
+    public function setDatas($path, $data)
     {
         $primaryKey = basename($path);
 
@@ -78,8 +78,11 @@ class Exiftool
      * @param $path The path of the file name
      * @return The content of the XMP Sidecar file
      */
-    public function getXMPSidecarContent(string $path)
+    public function getXMPSidecarContent($path)
     {
-        return shell_exec("$this->exe -xmp -b $path");
+        $dirPath = dirname(__FILE__).'/../../web/sidecar.xmp';
+        // Create XMPSideCar file
+        shell_exec("$this->exe -TagsFromFile $path -overwrite_original $dirPath");
+        return shell_exec("cat $dirPath");
     }
 }

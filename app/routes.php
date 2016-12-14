@@ -60,9 +60,9 @@ $app->get('/download/{filename}', function ($filename) use ($app) {
 
 // Downloads the XMP Sidecar file of a given file
 $app->get('/xmp/{filename}', function ($filename) use ($app) {
-    $xmp = $app['dao.image']->getXMPSidecarContent($filename);
+    $xmpContent = $app['dao.image']->getXMPSidecarContent($filename);
 
-    if ($xmp == null) {
+    if ($xmpContent == null) {
         return $app->abort(500, 'Impossible d\'extraire le contenu XMP Sidecar');
     }
 
@@ -70,9 +70,9 @@ $app->get('/xmp/{filename}', function ($filename) use ($app) {
     $response->headers->set('Cache-Control', 'private');
     $response->headers->set('Content-type', 'application-octet-stream');
     $response->headers->set('Content-Disposition', 'attachment; filename="'.$filename.'.xmp"');
-    $response->headers->set('Content-length', count($xmp));
+    $response->headers->set('Content-length', count($xmpContent));
     $response->sendHeaders();
-    $response->setContent($xmp);
+    $response->setContent($xmpContent);
 
     return $response;
 })->bind('downloadXmp');
