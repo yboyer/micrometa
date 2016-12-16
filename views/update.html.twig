@@ -3,7 +3,7 @@
 {% block title %}Modifier les metadata de l'image{% endblock %}
 
 {% block main %}
-  <div id="detail">
+  <div id="update">
     <h1>Détails pour <span class="filename">{{ image.filename }}</span></h1>
     <section>
       <aside id="image">
@@ -21,6 +21,7 @@
       </aside>
       <aside id="data">
         <h2>Liste de métadonnées</h2>
+        <div id="difftable"></div>
         {{ form_start(form) }}
           {% set currentCateg = '' %}
           {% for name in form|keys %}
@@ -46,4 +47,6 @@
       </aside>
     </section>
   </div>
+
+  <script src="js/diff.js"></script>
 {% endblock %}

@@ -1,0 +1,50 @@
+#update {
+  aside#data {
+    width: 100%;
+    max-width: 900px;
+  }
+
+  td {
+    padding: 0.4rem 0.5rem;
+
+    &:not(.line) {
+      border-bottom-style: none;
+    }
+
+    &:first-child {
+      padding-left: 0.25em;
+    }
+
+    &:last-child {
+      padding-right: 0.25em;
+    }
+
+    button {
+      width: 100%;
+      text-transform: initial;
+      padding: 12px 1em;
+      max-width: 100%;
+      white-space: normal;
+      height: inherit;
+      line-height: 1.6em;
+
+      &:not(.checked) {
+        @extend .button-outline;
+      }
+    }
+
+    input[type="checkbox"],
+    input[type="text"] {
+      margin: 0;
+    }
+  }
+
+  th {
+    font-weight: 600;
+  }
+
+  #diffsubmit {
+    width: 100%;
+    background-color: #05ab41;
+  }
+}
