@@ -26,9 +26,9 @@
     - [x] Affiche les noms et auteurs
       - [x] Microdata
   - Détail: `/detail/{filename}`
-    - [ ] Recherche d'image correspondante par mot-clé, titre, géolocalisation, ...
+    - [x] Recherche d'image correspondante par mot-clé, titre, géolocalisation, ...
   - Carte: `/map`
-    - [ ] Affichage des images sur une cartes
+    - [x] Affichage des images sur une cartes
   - Global
     - [x] Stocker les métadonnées au lieu de les rechercher avec `exiftool` (sans base de données)
     - [x] Détection des incohérances des métadonnées dans une image (EXITF, IPTC, XMP)
