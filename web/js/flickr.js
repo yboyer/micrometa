@@ -13,6 +13,7 @@ var flickr = {
 
 var container = document.querySelector('#flickr');
 flickr.req = requestAsync(flickr.getFlickrUrl(), function(status, json) {
+    container.innerHTML = '';
     if (status == 200) {
         json = JSON.parse(json);
         for (var i = 0; i < 10; i++) {
@@ -22,6 +23,8 @@ flickr.req = requestAsync(flickr.getFlickrUrl(), function(status, json) {
             var imgUrl = 'https://www.flickr.com/photos/' + photo.owner + '/' + photo.id;
             container.appendChild(createFlickrElement(imgName, img, imgUrl));
         }
+    } else {
+      container.innerHTML = 'Erreur ' + status + '. Impossible de récupérer les données.';
     }
 });
 
