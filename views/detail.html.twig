@@ -7,8 +7,8 @@
 {% block meta %}
   <meta property="og:title" content="Détail de l'image {{ image.filename }}" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="{{ path('detail', {filename: image.filename}) }}" />
-  <meta property="og:image" content="{{ image.path }}" />
+  <meta property="og:url" content="{{ url('detail', {filename: image.filename}) }}" />
+  <meta property="og:image" content="{{ url('list') }}{{ image.path }}" />
   <meta property="og:description" content="Affichage des meta donnéées de l'image {{ image.filename }}. Opérations réalisés grâce à l'outil exiftool" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Microdate project" />
@@ -16,7 +16,7 @@
   <meta name="twitter:site" content="@flo_quach">
   <meta name="twitter:title" content="Détail de l'image {{ image.filename }}">
   <meta name="twitter:description" content="Affichage des meta donnéées de l'image {{ image.filename }}. Opérations réalisés grâce à l'outil exiftool" />
-  <meta name="twitter:image" content="{{ image.path }}" />
+  <meta name="twitter:image" content="{{ url('list') }}{{ image.path }}" />
 
 {% endblock %}
 
