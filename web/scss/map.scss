@@ -3,11 +3,17 @@
   width: 100%;
   height: 600px;
   border-radius: 4px;
-}
+  background-color: #e0e0e0;
 
-.thumb {
-  max-width: 450px!important;
-  margin: auto;
-  display: block;
-  margin-bottom: 10px;
+  .loading {
+    line-height: 600px;
+    text-align: center;
+  }
+
+  .thumb {
+    max-width: 450px!important;
+    margin: auto;
+    display: block;
+    margin-bottom: 10px;
+  }
 }

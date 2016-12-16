@@ -10,17 +10,17 @@ var geocoder = new google.maps.Geocoder();
 var bounds = new google.maps.LatLngBounds();
 var currentInfoWindow = null;
 
-function getgeocodeFromCity(description, name, path, dataLocation) {
+function getgeocodeFromCity(description, name, path, dataLocation, filename) {
   geocoder.geocode({
     'address': dataLocation
   }, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
-      placeMarker(results[0].geometry.location, description, name, path);
+      placeMarker(results[0].geometry.location, description, name, path, filename);
     }
   });
 }
 
-function placeMarker(location, description, name, path) {
+function placeMarker(location, description, name, path, filename) {
   var marker = new google.maps.Marker({
     position: location,
     map: map,
@@ -33,11 +33,11 @@ function placeMarker(location, description, name, path) {
   map.fitBounds(bounds);
 
   marker.infowindow = new google.maps.InfoWindow({
-    content: '<figure>'+
-        '<img class="thumb" src="' + path + '" alt="' + name + '">' +
-        '<figcaption><h5>' + name + '</h5></figcaption>' +
+    content: '<figure>' +
+      '<img class="thumb" src="' + path + '" alt="' + name + '">' +
+      '<figcaption><a href="detail/' + filename + '"><h5>' + name + '</h5></a></figcaption>' +
       '</figure>' +
-      '<p>'+description+'</p>'
+      '<p>' + description + '</p>'
   });
   google.maps.event.addListener(marker, 'click', function() {
     // Close the current infowindow

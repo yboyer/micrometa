@@ -4,7 +4,7 @@
 
 {% block main %}
   <h1>Carte</h1>
-  <div id="map"></div>
+  <div id="map"><div class="loading">Chargement...</div></div>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8J2Uspirmmtm8qwe3zabdxoHTlCjxsCw"></script>
   <script type="text/javascript" src="js/map.js"></script>
 
@@ -13,7 +13,7 @@
       {% autoescape 'js' %}
         var description = "{{ image.description }}";
       {% endautoescape %}
-      getgeocodeFromCity(description, "{{ image.name }}", "{{ image.path }}", "{{ image.location }}");
+      getgeocodeFromCity(description, "{{ image.name }}", "{{ image.path }}", "{{ image.location }}", "{{ image.filename }}");
     </script>
   {% endfor %}
 
