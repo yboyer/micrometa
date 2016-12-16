@@ -1,0 +1,144 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Page technique sur l'implémentation{% endblock %}
+
+{% block main %}
+  <div id="about">
+    <h1>Page technique sur l'implémentation</h1>
+    <blockquote>
+      <p>Lien GitHub: <a href="https://github.com/yboyer/micrometa#readme" target="_blank">https://github.com/yboyer/micrometa</a></p>
+    </blockquote>
+
+    <h2>Composition du groupe:</h2>
+    <p>Yoann Boyer, Florian Quaghebeur</p>
+
+    <h2>Technologies:</h2>
+    <ul>
+      <li>
+        <span>Silex</span>
+        <ul>
+          <dd>Paquets <a href="https://getcomposer.org/">Composer</a> / Composants pour <a href="http://silex.sensiolabs.org/">Silex</a></dd>
+          <li><code>silex/silex</code>→ Pour installer le framework Silex</li>
+          <li><code>twig/twig</code>→ Pour la génération de page dynamiques</li>
+          <li><code>symfony/twig-bridge</code>→ Integration de twig dans Silex afin d'utiliser les méthodes <code>bind()</code> et ainsi faciliter la récupération des routes dans les pages de template</li>
+          <li><code>symfony/form</code>→ Pour la génération des formulaires</li>
+          <li><code>symfony/translation</code>→ Permet de traduire les messages d'erreur</li>
+          <li><code>symfony/validator</code>→ Pour la validation des formulaires</li>
+          <li><code>symfony/config</code>→ Dépendance du composant de génération de formulaires</li>
+        </ul>
+      </li>
+      <li>
+        <span>SASS</span>
+        <ul>
+          <li><a href="https://milligram.github.io/">Milligram</a>→ Framework de style pour les éléments graphiques</li>
+        </ul>
+      </li>
+    </ul>
+
+    <hr>
+
+    <h2>Les fonctionnalités:</h2>
+    <ul>
+      <li>
+        <span>Points obligatoires</span>
+        <ul>
+          <li>
+            <span>Page d'accueil <code>/</code></span>
+            <ul>
+              <li><input type="checkbox" checked disabled> Afficher les images</li>
+              <li><input type="checkbox" checked disabled> Chaques images renvoie vers une page de détail</li>
+            </ul>
+          </li>
+          <li>
+            <span>Page de détail <code>/detail/{filename}</code></span>
+            <ul>
+              <li><input type="checkbox" checked disabled> Afficher l'image</li>
+              <li><input type="checkbox" checked disabled> Afficher les métadonnées extraites par Exiftool</li>
+              <li><input type="checkbox" checked disabled> Inserer les microdata dans la page</li>
+              <li><input type="checkbox" checked disabled> Inserer les données Open Graph</li>
+              <li><input type="checkbox" checked disabled> Inserer les données Twitter Cards</li>
+              <li><input type="checkbox" checked disabled> Afficher un lien pour télécharger l'image</li>
+              <li><input type="checkbox" checked disabled> Afficher un lien pour télécharger le fichier XMP Sidecar</li>
+            </ul>
+          </li>
+          <li>
+            <span>Page d'ajout <code>/upload</code></span>
+            <ul>
+              <li><input type="checkbox" checked disabled> Ajouter une image par upload de fichier</li>
+            </ul>
+          </li>
+          <li>
+            <span>Page de mise à jour <code>/update</code></span>
+            <ul>
+              <li><input type="checkbox" checked disabled> Extraction et affichage des métadonnées dans un formulaire pour validation (seulement les champs modifiables sont affichés)</li>
+              <li><input type="checkbox" checked disabled> Mise à jour des métadonnées lors de la validation du formulaire</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span>Points optionnels</span>
+        <ul>
+          <li>
+            <span>Page d'accueil</span>
+            <ul>
+              <li><input type="checkbox" checked disabled> Afficher les titres et auteurs des photos</li>
+              <li><input type="checkbox" checked disabled> Inclure les microdata dans la page</li>
+            </ul>
+          </li>
+          <li>
+            <span>Correspondances Flickr</span>
+            <ul>
+              <li><input type="checkbox" checked disabled> Recherche automatique des correspondances Flickr sur la page de détail</li>
+            </ul>
+          </li>
+          <li>
+            <span>Affichage des photos sur une carte <code>/map</code></span>
+            <ul>
+              <li><input type="checkbox" checked disabled> Afficher les photos sur une carte</li>
+            </ul>
+          </li>
+          <li>
+            <span>Optimisation</span>
+            <ul>
+              <li><input type="checkbox" checked disabled> Utilisation d'un fichier json pour stocker toutes les données extraites par Exiftool (classe <code>JsonManager</code>)</li>
+            </ul>
+          </li>
+          <li>
+            <span>Gestion des cohérences des métadonnées (réalisé en JavaScript)</span>
+            <ul>
+              <li><input type="checkbox" checked disabled> Détecter les incohérences entre les différents tags</li>
+              <li><input type="checkbox" checked disabled> Afficher un formulaire qui affiche les différences afin de sélectionner les données à garder</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2>Les plus:</h2>
+    <ul>
+      <li>Vérification du type de fichier uploadé (si ce n'est pas une image, une erreur s'affiche)</li>
+      <li>Chaque images présentes sur la carte redirigent vers leur page de détail</li>
+      <li>Mise en place d'une classe <code>JsonManager</code> pour gérer les imports et les modifications des métadonnées dans le fichier json</li>
+      <li>Mise en place d'une page d'erreur pour afficher les pages 404 et les erreurs liées au serveur</li>
+      <li>La carte zoom automatiquement sur l'ensemble des photos affichées sur la carte</li>
+      <li>Mise en place d'une page de mise à jour des métadonnées <code>/update/{filename}</code></li>
+      <li>
+        <span><a href="http://silex.sensiolabs.org/api/master/traits.html" target="_blank">Traits</a>: (permet d'utiliser les méthodes de composant directement depuis l'objet <code>$app</code>)</span>
+        <ul>
+          <li><code>TwigTrait</code>→ <code>$app->render()</code> au lieu de <code>$app['twig']->render()</code></li>
+          <li><code>UrlGeneratorTrait</code>→ <code>$app->path()</code> au lieu de <code>$app['url_generator']->generate()</code></li>
+          <li><code>FormTrait</code>→ <code>$app->form()</code> au lieu de <code>$app['form.factory']->createBuilder(FormType::class)</code></li>
+        </ul>
+      </li>
+      <li>
+        <span>Scripts npm</span>
+        <ul>
+          <li><code>install</code>→ Installe les composants composer, installe le package <code>node-sass</code> puis compile les fichiers de style</li>
+          <li><code>sass</code>→ Compile les fichiers de style</li>
+          <li><code>watch-sass</code>→ Écoute les changements effectués sur les fichier de style pour automatiquement recompiler les fichiers de style</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+{% endblock %}

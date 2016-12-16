@@ -183,6 +183,12 @@ $app->match('/update/{filename}', function (Request $request, $filename) use ($a
 }, 'GET|POST')->bind('update');
 
 
+// Sends the about page
+$app->get('/about', function () use ($app) {
+    return $app->render('about.html.twig');
+})->bind('about');
+
+
 // 404 page
 $app->error(function (\Exception $e, Request $res, $code) use ($app) {
     $message = $e->getMessage();
